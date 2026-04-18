@@ -575,6 +575,26 @@
     }
 
     /* RESPONSIVE */
+    /* Sub-menu styles — desktop hover */
+    .nav-has-sub { position: relative; }
+    .nav-sub {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: rgba(14,26,43,0.98); border: 1px solid rgba(184,151,74,0.15);
+      min-width: 220px; z-index: 200; padding: 0.5rem 0;
+      backdrop-filter: blur(8px);
+    }
+    .nav-has-sub:hover .nav-sub { display: block; }
+    .nav-sub li { list-style: none; }
+    .nav-sub li a {
+      display: block; padding: 0.55rem 1.2rem;
+      font-family: var(--sans); font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(247,244,238,0.6); white-space: nowrap;
+      transition: var(--trans);
+    }
+    .nav-sub li a:hover { color: var(--gold-l); background: rgba(184,151,74,0.05); }
+    .nav-arrow { font-size: 0.55rem; opacity: 0.6; margin-left: 3px; }
+
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
       .hero-logo-wrap { order: -1; }
@@ -592,14 +612,33 @@
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .footer-top { flex-direction: column; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+      /* Mobile nav — full screen overlay */
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .nav-links.open {
         display: flex; flex-direction: column;
-        position: fixed; top: 64px; left: 0; right: 0;
-        background: var(--dark); padding: 2rem; gap: 1.5rem; z-index: 99;
+        position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
+        background: rgba(14,26,43,0.99); padding: 1.5rem 2rem;
+        gap: 0; z-index: 99; overflow-y: auto;
       }
-      .nav-links.open a { font-size: 0.95rem; letter-spacing: 0.06em; }
+      .nav-links.open > li { border-bottom: 1px solid rgba(184,151,74,0.08); }
+      .nav-links.open > li > a {
+        font-size: 0.9rem; letter-spacing: 0.06em;
+        display: block; padding: 0.85rem 0;
+      }
+      /* Mobile sub-menus — always visible when parent open */
+      .nav-has-sub .nav-sub {
+        display: block; position: static;
+        background: transparent; border: none;
+        padding: 0 0 0.5rem 1rem;
+      }
+      .nav-sub li a {
+        font-size: 0.75rem; padding: 0.4rem 0;
+        color: rgba(247,244,238,0.45); letter-spacing: 0.08em;
+      }
+      .nav-sub li a:hover { background: transparent; color: var(--gold-l); }
+      .nav-arrow { display: none; }
     }
   
     /* ======================== PACKAGES STYLES ======================== */
@@ -957,19 +996,8 @@
       .bundle-card { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: repeat(2, 1fr); }
       .process-step { border-right: none; border-bottom: 1px solid rgba(184,151,74,0.12); }
-      .process-step:nth-child(2n) { }
       .process-step:last-child { border-bottom: none; }
       .entry-grid { grid-template-columns: 1fr; }
-      .footer-top { flex-direction: column; gap: 2rem; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: fixed; top: 64px; left: 0; right: 0;
-        background: rgba(14,26,43,0.98); padding: 1.5rem 2rem;
-        gap: 1.2rem; border-bottom: 1px solid rgba(184,151,74,0.15);
-      }
-      .nav-links.open a { font-size: 0.95rem; letter-spacing: 0.06em; }
     }
     @media (max-width: 600px) {
       .process-steps { grid-template-columns: 1fr; }
@@ -1000,11 +1028,28 @@
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
+      <li class="nav-has-sub">
+        <a href="#services" class="nav-parent-link">Services <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub">
+          <li><a href="#services" data-scroll="services">Knowledge Services</a></li>
+          <li><a href="#services" data-scroll="services">Intelligence &amp; Publishing</a></li>
+          <li><a href="#services" data-scroll="services">Advisory</a></li>
+        </ul>
+      </li>
       <li><a href="#about">About</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#ai-parliaments" class="nav-ai-link">AI for Parliaments</a></li>
-      <li><a href="#" onclick="showPackages(event)" id="nav-packages-link">Packages</a></li>
+      <li class="nav-has-sub">
+        <a href="#" onclick="showPackages(event)" id="nav-packages-link" class="nav-parent-link">Packages <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub" id="nav-packages-sub">
+          <li><a href="#" onclick="showPackageTab(event,'knowledge')">Knowledge &amp; Data</a></li>
+          <li><a href="#" onclick="showPackageTab(event,'intelligence')">Strategic Intelligence</a></li>
+          <li><a href="#" onclick="showPackageTab(event,'ai-parliaments')">AI for Parliaments</a></li>
+          <li><a href="#" onclick="showPackageTab(event,'institutional-design')">Institutional Design</a></li>
+          <li><a href="#" onclick="showPackageTab(event,'entry')">Entry Points</a></li>
+          <li><a href="#" onclick="showPackageTab(event,'process')">How We Work</a></li>
+        </ul>
+      </li>
       <li><a href="#newsletter">Newsletter</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
