@@ -1046,7 +1046,7 @@
         <ul class="nav-sub" id="nav-packages-sub">
           <li><a href="#" onclick="showPackageTab(event,'knowledge')">Knowledge &amp; Data</a></li>
           <li><a href="#" onclick="showPackageTab(event,'intelligence')">Strategic Intelligence</a></li>
-          <li><a href="#" onclick="showPackageTab(event,'ai-parliaments')">AI for Parliaments</a></li>
+          <li><a href="#" onclick="showPackageTab(event,'pkg-ai-parliaments')">AI for Parliaments</a></li>
           <li><a href="#" onclick="showPackageTab(event,'institutional-design')">Institutional Design</a></li>
           <li><a href="#" onclick="showPackageTab(event,'entry')">Entry Points</a></li>
           <li><a href="#" onclick="showPackageTab(event,'process')">How We Work</a></li>
@@ -1579,7 +1579,7 @@
   <div class="pkg-nav-inner">
     <a href="#knowledge" class="active">Knowledge &amp; Data</a>
     <a href="#intelligence">Strategic Intelligence</a>
-    <a href="#ai-parliaments">AI for Parliaments</a>
+    <a href="#pkg-ai-parliaments">AI for Parliaments</a>
     <a href="#institutional-design">Institutional Design</a>
     <a href="#entry">Entry Points</a>
     <a href="#process">How We Work</a>
@@ -1730,7 +1730,7 @@
 <!-- ============================================================
      SECTION 3 — AI FOR PARLIAMENTS
      ============================================================ -->
-<section id="ai-parliaments" class="section section-mid">
+<section id="pkg-ai-parliaments" class="section section-mid">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Institutional Advisory</span>
@@ -2031,7 +2031,7 @@
   // ════════════════════════════════════════════════════════
   // PACKAGES TAB SECTION IDS
   // ════════════════════════════════════════════════════════
-  var PKG_SECTIONS = ['knowledge','intelligence','ai-parliaments','institutional-design','entry','process'];
+  var PKG_SECTIONS = ['knowledge','intelligence','pkg-ai-parliaments','institutional-design','entry','process'];
 
   // ── Menu toggle ──────────────────────────────────────────
   function toggleMenu() {
@@ -2058,14 +2058,16 @@
 
   // ── Show a single tab section, hide all others ───────────
   function showTab(tabId) {
+    var pkgContent = document.getElementById('packages-content');
+    // Hide all pkg sections (scoped to packages-content)
     PKG_SECTIONS.forEach(function(id) {
-      var el = document.getElementById(id);
+      var el = pkgContent ? pkgContent.querySelector('#' + id) : document.getElementById(id);
       if (el) el.style.display = 'none';
     });
-    var target = document.getElementById(tabId);
+    // Show target section
+    var target = pkgContent ? pkgContent.querySelector('#' + tabId) : document.getElementById(tabId);
     if (target) {
       target.style.display = 'block';
-      // Scroll to just below sticky nav bars
       setTimeout(function() {
         var pkgNav = document.querySelector('.pkg-nav');
         var offset = (pkgNav ? pkgNav.offsetHeight : 48) + 64;
@@ -2075,12 +2077,26 @@
     }
     // Update active tab styling
     document.querySelectorAll('.pkg-nav a').forEach(function(a) {
-      if (a.getAttribute('href') === '#' + tabId) {
+      var href = a.getAttribute('href') || '';
+      if (href === '#' + tabId) {
         a.classList.add('active');
       } else {
         a.classList.remove('active');
       }
     });
+  }
+
+  // ── Open packages panel + jump to specific tab (used by mobile nav sub-links) ──
+  function showPackageTab(e, tabId) {
+    if (e) e.preventDefault();
+    document.getElementById('main-site-content').style.display = 'none';
+    document.getElementById('packages-content').style.display = 'block';
+    document.getElementById('nav-packages-link').style.color = 'var(--gold-l)';
+    window.scrollTo(0, 0);
+    showTab(tabId);
+    // Close mobile menu
+    var navLinks = document.getElementById('nav-links');
+    if (navLinks) navLinks.classList.remove('open');
   }
 
   // ════════════════════════════════════════════════════════
@@ -2107,8 +2123,10 @@
     });
 
     // Init: hide all pkg sections (tab system controls visibility)
+    // Use querySelector with packages-content scope to avoid touching main site sections
+    var pkgContent = document.getElementById('packages-content');
     PKG_SECTIONS.forEach(function(id) {
-      var el = document.getElementById(id);
+      var el = pkgContent ? pkgContent.querySelector('#' + id) : document.getElementById(id);
       if (el) el.style.display = 'none';
     });
 
@@ -2126,7 +2144,7 @@
       'Flash Documentary': 'knowledge',
       'Flash Audit': 'knowledge',
       'Customised Monitor': 'intelligence',
-      'AI Diagnostic': 'ai-parliaments'
+      'AI Diagnostic': 'pkg-ai-parliaments'
     };
     document.querySelectorAll('#packages-content .entry-link').forEach(function(a) {
       var text = a.textContent.trim();
