@@ -139,35 +139,12 @@
     @media (min-width: 901px) {
       .nav-links { display: flex !important; gap: 1.4rem; align-items: center; }
       .hamburger { display: none !important; }
-      /* Packages dropdown on hover */
-      .nav-links > li { position: relative; }
-      .nav-has-sub { position: relative; }
-      .nav-drop {
-        display: none; position: absolute; top: 100%; left: 50%;
-        transform: translateX(-50%);
-        background: rgba(10,20,38,0.98); border: 1px solid rgba(184,151,74,0.2);
-        min-width: 210px; z-index: 9999; padding: 0.6rem 0 0.4rem;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      }
-      /* Invisible bridge to prevent gap closing dropdown */
-      .nav-drop::before {
-        content: ''; position: absolute; top: -10px; left: 0; right: 0; height: 10px;
-      }
-      .nav-has-sub:hover .nav-drop { display: block; }
-      .nav-drop li { list-style: none; }
-      .nav-drop li a {
-        display: block; padding: 0.5rem 1.2rem;
-        font-size: 0.66rem; letter-spacing: 0.09em;
-        color: rgba(247,244,238,0.6); white-space: nowrap;
-      }
-      .nav-drop li a:hover { color: var(--gold-l); background: rgba(184,151,74,0.06); }
-      .nav-arrow { font-size: 0.5rem; opacity: 0.5; margin-left: 2px; vertical-align: middle; }
+      /* no dropdown — packages opens via pkg-nav tab bar */
     }
 
     /* ── MOBILE NAV OPEN STATE (≤900px) ── */
     @media (max-width: 900px) {
       .nav-arrow { display: none; }
-      .nav-drop { /* always visible in mobile open menu */ }
       .nav-links.open {
         display: flex !important; flex-direction: column;
         position: fixed; top: 64px; left: 0; right: 0; bottom: 0;
@@ -182,17 +159,7 @@
         font-size: 0.85rem; letter-spacing: 0.1em;
         color: rgba(247,244,238,0.8);
       }
-      .nav-links.open .nav-has-sub .nav-drop {
-        display: block; position: static;
-        background: rgba(184,151,74,0.04); border: none; box-shadow: none;
-        padding: 0 0 0.6rem 0; transform: none; min-width: auto;
-      }
-      .nav-links.open .nav-drop li a {
-        padding: 0.42rem 2.8rem;
-        font-size: 0.78rem; color: rgba(247,244,238,0.42);
-        letter-spacing: 0.08em;
-      }
-      .nav-links.open .nav-drop li a:hover { color: var(--gold-l); background: transparent; }
+      /* mobile packages nav: uses pkg-nav tab bar */
       /* Hide nav-cta border on mobile */
       .nav-links.open .nav-cta {
         border: none !important; margin: 0.4rem 1.8rem;
@@ -259,14 +226,65 @@
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
 
-    /* ── PACKAGES TAB-NAV MOBILE ── */
+    /* ── PACKAGES MOBILE — comprehensive overrides ── */
     @media (max-width: 900px) {
-      .pkg-grid-2, .pkg-grid-3 { grid-template-columns: 1fr; }
-      .bundle-card { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: repeat(2, 1fr); }
-      .process-step { border-right: none; border-bottom: 1px solid rgba(184,151,74,0.12); }
+      /* All sections: reduce padding, no clipping */
+      #packages-content .section { padding: 2.5rem 0; overflow: visible !important; }
+      #packages-content .container { padding: 0 1rem; }
+
+      /* Grids: always single column */
+      .pkg-grid-2,
+      .pkg-grid-3 { grid-template-columns: 1fr !important; gap: 1rem; }
+
+      /* Cards: comfortable mobile padding, never cut */
+      .pkg-card,
+      .pkg-card-dark {
+        padding: 1.4rem; overflow: visible;
+        width: 100%; box-sizing: border-box;
+      }
+
+      /* Bundle card: stack vertically */
+      .bundle-card {
+        grid-template-columns: 1fr !important;
+        padding: 1.4rem; gap: 1.2rem;
+      }
+      .bundle-right { padding: 0; }
+
+      /* Process steps: 1 column on phone */
+      .process-steps { grid-template-columns: 1fr; gap: 0; }
+      .process-step {
+        border-right: none;
+        border-bottom: 1px solid rgba(184,151,74,0.12);
+        padding: 1.2rem 0;
+      }
       .process-step:last-child { border-bottom: none; }
-      .entry-grid { grid-template-columns: 1fr; }
+
+      /* Entry grid: 1 column */
+      .entry-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .entry-card { padding: 1.2rem; overflow: visible; }
+
+      /* Section headers: tighter */
+      .section-header { margin-bottom: 2rem; }
+      .section-header h2 { font-size: clamp(1.4rem, 5vw, 2rem); }
+
+      /* AI Parliament add-on card */
+      #packages-content .pkg-card[style] { margin-top: 1rem !important; }
+
+      /* Inline add-on card */
+      #pkg-ai-parliaments .pkg-card { margin-top: 1rem; }
+
+      /* SIDS note boxes */
+      .sids-note { padding: 1.2rem; margin-top: 1.5rem; }
+
+      /* Page hero: compact */
+      .page-hero-inner { padding: 1.2rem 1rem 1.5rem; }
+      .page-hero h1 { font-size: clamp(1.4rem, 5vw, 2rem); }
+      .page-hero-desc { font-size: 0.88rem; }
+      .page-hero-note { margin-top: 1rem; padding-top: 1rem; font-size: 0.9rem; }
+
+      /* pkg-nav: bigger tap targets */
+      .pkg-nav-inner { padding: 0 0.2rem; }
+      .pkg-nav a { font-size: 0.7rem; padding: 0.85rem 0.8rem; letter-spacing: 0.05em; }
     }
 
         /* HERO */
@@ -865,8 +883,8 @@
     }
     .pkg-grid-2 { grid-template-columns: repeat(2, 1fr); }
     .pkg-grid-3 { grid-template-columns: repeat(3, 1fr); }
-    #packages-content { overflow-x: hidden; width: 100%; }
-    #packages-content section { overflow-x: hidden; }
+    #packages-content { width: 100%; max-width: 100vw; }
+    #packages-content > section { width: 100%; box-sizing: border-box; }
 
     .pkg-card {
       background: var(--cream2);
@@ -1051,6 +1069,8 @@
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
       margin-top: 2.5rem;
     }
+    #entry { overflow: visible !important; }
+    .entry-card { min-height: 0; overflow: visible; }
     .entry-card {
       padding: 2rem; border: 1px solid var(--cream2);
       background: var(--cream);
@@ -1176,16 +1196,8 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#ai-parliaments" class="nav-ai-link">AI for Parliaments</a></li>
-      <li class="nav-has-sub">
-        <a href="#" id="nav-packages-link" onclick="showPackages(event)">Packages <span class="nav-arrow">▾</span></a>
-        <ul class="nav-drop">
-          <li><a href="#" onclick="showPackageTab(event,'knowledge')">Knowledge &amp; Data</a></li>
-          <li><a href="#" onclick="showPackageTab(event,'intelligence')">Strategic Intelligence</a></li>
-          <li><a href="#" onclick="showPackageTab(event,'pkg-ai-parliaments')">AI for Parliaments</a></li>
-          <li><a href="#" onclick="showPackageTab(event,'institutional-design')">Institutional Design</a></li>
-          <li><a href="#" onclick="showPackageTab(event,'entry')">Entry Points</a></li>
-          <li><a href="#" onclick="showPackageTab(event,'process')">How We Work</a></li>
-        </ul>
+      <li>
+        <a href="#" id="nav-packages-link" onclick="showPackages(event)">Packages</a>
       </li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1698,6 +1710,11 @@
 </div>
 
 <div id="packages-content" style="display:none;">
+<button id="pkg-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  style="display:none; position:fixed; bottom:1.2rem; right:1.2rem; z-index:999;
+         background:var(--navy); color:var(--cream); border:1px solid rgba(184,151,74,0.4);
+         border-radius:50%; width:44px; height:44px; font-size:1.1rem; cursor:pointer;
+         box-shadow:0 2px 12px rgba(0,0,0,0.3); line-height:1;">↑</button>
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -2171,10 +2188,12 @@
   // ════════════════════════════════════════════════════════
   var PKG_SECTIONS = ['knowledge','intelligence','pkg-ai-parliaments','institutional-design','entry','process'];
 
-  // ── Menu toggle ──────────────────────────────────────────
+  // ── Menu toggle (hamburger) ──────────────────────────────
   function toggleMenu() {
     document.getElementById('nav-links').classList.toggle('open');
   }
+
+  // packages nav: simple link, no dropdown needed
 
   // ── Show packages panel ──────────────────────────────────
   function showPackages(e) {
@@ -2191,6 +2210,8 @@
     document.getElementById('main-site-content').style.display = 'block';
     document.getElementById('packages-content').style.display = 'none';
     document.getElementById('nav-packages-link').style.color = '';
+    var btn = document.getElementById('pkg-top-btn');
+    if (btn) btn.style.display = 'none';
     window.scrollTo(0, 0);
   }
 
@@ -2224,17 +2245,21 @@
     });
   }
 
-  // ── Open packages panel + jump to specific tab (used by mobile nav sub-links) ──
+  // ── Open packages panel + jump to specific tab ───────────
   function showPackageTab(e, tabId) {
     if (e) e.preventDefault();
+    // Close desktop dropdown
+    var pkgLi = document.getElementById('nav-pkg-li');
+    if (pkgLi) pkgLi.classList.remove('open');
+    // Close mobile menu
+    var navLinks = document.getElementById('nav-links');
+    if (navLinks) navLinks.classList.remove('open');
+    // Open packages panel
     document.getElementById('main-site-content').style.display = 'none';
     document.getElementById('packages-content').style.display = 'block';
     document.getElementById('nav-packages-link').style.color = 'var(--gold-l)';
     window.scrollTo(0, 0);
     showTab(tabId);
-    // Close mobile menu
-    var navLinks = document.getElementById('nav-links');
-    if (navLinks) navLinks.classList.remove('open');
   }
 
   // ════════════════════════════════════════════════════════
@@ -2297,6 +2322,14 @@
           break;
         }
       }
+    });
+
+    // Show/hide scroll-to-top button when in packages view
+    window.addEventListener('scroll', function() {
+      var btn = document.getElementById('pkg-top-btn');
+      if (!btn) return;
+      var pkgVisible = document.getElementById('packages-content').style.display !== 'none';
+      btn.style.display = (pkgVisible && window.scrollY > 300) ? 'block' : 'none';
     });
 
     // Main site scroll active nav highlight
