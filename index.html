@@ -43,6 +43,34 @@
     .value-card h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--gold); margin-bottom: 0.75rem; }
     .value-card p { font-family: var(--sans); font-size: 0.9rem; line-height: 1.75; color: var(--grey); font-weight: 300; }
     .ai-section { background: var(--cream); }
+    .when-to-call {
+      margin-top: 1.8rem;
+      padding: 1rem 1.4rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(184,151,74,0.06);
+    }
+    .when-to-call-label {
+      font-family: var(--sans); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-l); margin-bottom: 0.35rem; display: block;
+    }
+    .when-to-call p {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.98rem; color: rgba(247,244,238,0.7);
+      line-height: 1.65; margin: 0;
+    }
+    .typical-label {
+      font-family: var(--sans); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(184,151,74,0.6); margin-top: 1.5rem; margin-bottom: 0.5rem; display: block;
+    }
+    .typical-item {
+      display: block;
+      font-family: var(--sans); font-size: 0.72rem; font-weight: 300;
+      color: rgba(184,151,74,0.55); padding: 0.15rem 0 0.5rem 1.2rem;
+      letter-spacing: 0.03em;
+    }
+    .typical-item::before { content: "↳ "; }
     .ai-intro { max-width: 640px; margin-bottom: 2.5rem; }
     .ai-intro p { font-family: var(--sans); font-size: 1rem; line-height: 1.8; color: var(--text); font-weight: 300; margin-top: 1rem; }
     .ai-offers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
@@ -245,22 +273,30 @@
     /* SERVICES */
     .services-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: rgba(184,151,74,0.1);
-      margin-top: 3.5rem;
+      gap: 0; margin-top: 3.5rem;
+      border: 1px solid rgba(184,151,74,0.12);
     }
     .service-card {
-      background: rgba(14,26,43,0.7);
       padding: 2.8rem 2.2rem;
       transition: var(--trans);
       position: relative; overflow: hidden;
+      border-right: 1px solid rgba(184,151,74,0.12);
     }
-    .service-card:hover { background: rgba(184,151,74,0.08); }
+    .service-card:last-child { border-right: none; }
+    /* Card 01 — deep navy */
+    .service-card:nth-child(1) { background: rgba(14,26,43,0.95); }
+    /* Card 02 — slightly lighter with gold tint */
+    .service-card:nth-child(2) { background: rgba(27,42,69,0.85); }
+    /* Card 03 — navy with green tint */
+    .service-card:nth-child(3) { background: rgba(20,35,52,0.95); }
+    .service-card:hover { filter: brightness(1.08); }
     .service-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 2px; background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
-      opacity: 0; transition: var(--trans);
+      height: 3px; opacity: 1; transition: var(--trans);
     }
-    .service-card:hover::before { opacity: 1; }
+    .service-card:nth-child(1)::before { background: linear-gradient(90deg, var(--gold) 0%, rgba(184,151,74,0.3) 100%); }
+    .service-card:nth-child(2)::before { background: linear-gradient(90deg, rgba(212,175,106,0.9) 0%, rgba(184,151,74,0.4) 100%); }
+    .service-card:nth-child(3)::before { background: linear-gradient(90deg, rgba(184,151,74,0.7) 0%, transparent 100%); }
     .service-num {
       font-family: var(--cormo); font-size: 2.8rem; font-weight: 300;
       color: rgba(184,151,74,0.18); line-height: 1; margin-bottom: 1.2rem;
@@ -271,20 +307,21 @@
       border: 1px solid rgba(184,151,74,0.3); padding: 0.22rem 0.6rem;
       margin-bottom: 1.1rem;
     }
-    .service-card h3 { color: var(--cream); margin-bottom: 0.8rem; font-size: 1.45rem; }
-    .service-card > p { font-size: 0.95rem; color: rgba(247,244,238,0.6); line-height: 1.85; margin-bottom: 1.5rem; }
+    .service-card h3 { color: var(--cream); margin-bottom: 0.8rem; font-size: 1.35rem; }
+    .service-card > p { font-size: 0.9rem; color: rgba(247,244,238,0.58); line-height: 1.85; margin-bottom: 1rem; }
     .service-divider {
-      width: 2rem; height: 1px; background: rgba(184,151,74,0.3); margin-bottom: 1.2rem;
+      width: 2rem; height: 1px; background: rgba(184,151,74,0.3); margin: 1.4rem 0;
     }
+    .service-items { list-style: none; }
     .service-items li {
-      font-family: var(--sans); font-size: 0.82rem;
+      font-family: var(--sans); font-size: 0.8rem;
       color: rgba(247,244,238,0.5);
-      padding: 0.38rem 0;
+      padding: 0.4rem 0;
       border-bottom: 1px solid rgba(247,244,238,0.05);
       display: flex; align-items: baseline; gap: 0.6rem;
     }
     .service-items li:last-child { border-bottom: none; }
-    .service-items li::before { content: '—'; color: var(--gold); opacity: 0.6; flex-shrink: 0; }
+    .service-items li::before { content: '—'; color: var(--gold); opacity: 0.5; flex-shrink: 0; }
     .service-items li strong { color: rgba(247,244,238,0.75); font-weight: 400; }
     .service-note {
       margin-top: 1.2rem; padding: 1rem 1rem;
@@ -564,7 +601,390 @@
       }
       .nav-links.open a { font-size: 0.95rem; letter-spacing: 0.06em; }
     }
-  </style>
+  
+    /* ======================== PACKAGES STYLES ======================== */
+.page-hero {
+      padding-top: 64px;
+      background: linear-gradient(155deg, var(--dark) 0%, #1a2f4e 50%, #173347 100%);
+      position: relative; overflow: hidden;
+    }
+    .page-hero-orb {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,151,74,0.07) 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; opacity: 0.025;
+      background-image: linear-gradient(rgba(184,151,74,1) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(184,151,74,1) 1px, transparent 1px);
+      background-size: 64px 64px; pointer-events: none;
+    }
+    .page-hero-inner {
+      position: relative; z-index: 2; max-width: var(--max); margin: 0 auto;
+      padding: 2rem 2rem 2.5rem;
+    }
+    .page-hero h1 { color: var(--cream); margin-bottom: 0.7rem; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+    .page-hero h1 em { color: var(--gold-l); font-style: italic; }
+    .page-hero-desc {
+      font-family: var(--sans); font-weight: 300; font-size: 0.95rem;
+      color: rgba(247,244,238,0.65); max-width: 580px; line-height: 1.75;
+      margin-top: 0.6rem;
+    }
+    .page-hero-note {
+      margin-top: 1.2rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(184,151,74,0.15);
+      font-family: var(--cormo); font-style: italic;
+      font-size: 1rem; color: rgba(247,244,238,0.5);
+      max-width: 620px; line-height: 1.6;
+    }
+
+    /* NAVIGATION TABS */
+    .pkg-nav {
+      background: var(--navy2);
+      border-bottom: 1px solid rgba(184,151,74,0.12);
+      position: sticky; top: 64px; z-index: 80;
+    }
+    .pkg-nav-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 2rem;
+      display: flex; gap: 0; overflow-x: auto;
+    }
+    .pkg-nav a {
+      font-family: var(--sans); font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(247,244,238,0.5);
+      padding: 1rem 1.4rem; border-bottom: 2px solid transparent;
+      white-space: nowrap; transition: var(--trans); flex-shrink: 0;
+    }
+    .pkg-nav a:hover { color: var(--gold-l); }
+    .pkg-nav a.active { color: var(--gold-l); border-bottom-color: var(--gold); }
+
+    /* SECTION HEADERS */
+    .section-header { margin-bottom: 3.5rem; }
+    .section-header h2 { margin-top: 0.5rem; }
+    .section-header p {
+      font-family: var(--sans); font-size: 1rem; font-weight: 300;
+      color: var(--grey); max-width: 600px; line-height: 1.85; margin-top: 1rem;
+    }
+    .section-header-light h2 { color: var(--cream); }
+    .section-header-light p { color: rgba(247,244,238,0.6); }
+    .section-header-light .eyebrow { color: var(--gold-l); }
+    .section-header-light .gold-line { background: var(--gold-l); opacity: 0.6; }
+
+    /* PACKAGE CARDS */
+    .pkg-grid {
+      display: grid; gap: 1.5rem;
+    }
+    .pkg-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .pkg-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .pkg-card {
+      background: var(--cream2);
+      border: 1px solid rgba(27,42,69,0.1);
+      padding: 2.5rem;
+      position: relative;
+      transition: var(--trans);
+    }
+    .pkg-card:hover { border-color: rgba(184,151,74,0.3); }
+    .pkg-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: var(--gold); opacity: 0;
+      transition: var(--trans);
+    }
+    .pkg-card:hover::before { opacity: 1; }
+
+    .pkg-card-dark {
+      background: rgba(14,26,43,0.7);
+      border: 1px solid rgba(184,151,74,0.12);
+      color: var(--cream);
+    }
+    .pkg-card-dark:hover { border-color: rgba(184,151,74,0.3); }
+
+    .pkg-tag {
+      display: inline-block; font-family: var(--sans); font-size: 0.6rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(184,151,74,0.35);
+      padding: 0.22rem 0.65rem; margin-bottom: 1.2rem;
+    }
+    .pkg-tag-light {
+      color: var(--gold-l); border-color: rgba(212,175,74,0.3);
+    }
+
+    .pkg-card h3 { font-size: 1.4rem; margin-bottom: 0.6rem; }
+    .pkg-card-dark h3 { color: var(--cream); }
+
+    .pkg-duration {
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
+      color: var(--grey); margin-bottom: 1rem; letter-spacing: 0.04em;
+    }
+    .pkg-card-dark .pkg-duration { color: rgba(247,244,238,0.45); }
+
+    .pkg-divider { width: 2rem; height: 1px; background: rgba(184,151,74,0.35); margin: 1.2rem 0; }
+
+    .pkg-desc {
+      font-size: 0.96rem; color: var(--grey); line-height: 1.85; margin-bottom: 1.5rem;
+    }
+    .pkg-card-dark .pkg-desc { color: rgba(247,244,238,0.58); }
+
+    .pkg-items {
+      border-top: 1px solid rgba(27,42,69,0.1);
+      padding-top: 1.2rem;
+      margin-top: 1.2rem;
+    }
+    .pkg-card-dark .pkg-items { border-top-color: rgba(247,244,238,0.07); }
+
+    .pkg-items-label {
+      font-family: var(--sans); font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .pkg-items-label-light { color: var(--gold-l); }
+
+    .pkg-items li {
+      font-family: var(--sans); font-size: 0.84rem;
+      color: rgba(27,42,69,0.7);
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(27,42,69,0.06);
+      display: flex; align-items: baseline; gap: 0.6rem;
+    }
+    .pkg-card-dark .pkg-items li {
+      color: rgba(247,244,238,0.5);
+      border-bottom-color: rgba(247,244,238,0.05);
+    }
+    .pkg-items li:last-child { border-bottom: none; }
+    .pkg-items li::before { content: '—'; color: var(--gold); opacity: 0.6; flex-shrink: 0; }
+
+    .pkg-price {
+      margin-top: 1.8rem; padding-top: 1.4rem;
+      border-top: 1px solid rgba(184,151,74,0.18);
+      display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
+    }
+    .pkg-price-amount {
+      font-family: var(--cormo); font-size: 1.6rem; color: var(--navy);
+    }
+    .pkg-card-dark .pkg-price-amount { color: var(--cream); }
+    .pkg-price-note {
+      font-family: var(--sans); font-size: 0.72rem;
+      color: var(--grey); font-style: italic;
+    }
+    .pkg-card-dark .pkg-price-note { color: rgba(247,244,238,0.35); }
+
+    /* BUNDLE CARD */
+    .bundle-card {
+      background: var(--navy);
+      border: 1px solid rgba(184,151,74,0.25);
+      padding: 3rem;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    .bundle-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-l) 100%);
+    }
+    .bundle-left h3 { color: var(--cream); font-size: 2rem; margin-bottom: 0.5rem; }
+    .bundle-left p {
+      font-family: var(--sans); font-size: 0.92rem; font-weight: 300;
+      color: rgba(247,244,238,0.6); line-height: 1.85; margin-top: 1rem;
+    }
+    .bundle-right {}
+    .bundle-includes-label {
+      font-family: var(--sans); font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold-l); margin-bottom: 1rem;
+    }
+    .bundle-includes li {
+      font-family: var(--sans); font-size: 0.88rem;
+      color: rgba(247,244,238,0.65);
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(247,244,238,0.06);
+      display: flex; align-items: baseline; gap: 0.7rem;
+    }
+    .bundle-includes li:last-child { border-bottom: none; }
+    .bundle-includes li::before { content: '◈'; color: var(--gold); font-size: 0.65rem; flex-shrink: 0; }
+    .bundle-price-row {
+      margin-top: 2rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(184,151,74,0.2);
+      display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+    }
+    .bundle-price {
+      font-family: var(--cormo); font-size: 2.2rem; color: var(--gold-l);
+    }
+    .bundle-price-note {
+      font-family: var(--sans); font-size: 0.78rem;
+      color: rgba(247,244,238,0.38); font-style: italic;
+    }
+
+    /* PROCESS / HOW IT WORKS */
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 3.5rem;
+    }
+    .process-step {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(184,151,74,0.12);
+      position: relative;
+    }
+    .process-step:last-child { border-right: none; }
+    .process-num {
+      font-family: var(--cormo); font-size: 3rem; font-weight: 300;
+      color: rgba(184,151,74,0.15); line-height: 1; margin-bottom: 1rem;
+    }
+    .process-step h4 {
+      font-family: var(--serif); font-size: 1.05rem; color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .process-step p {
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+      color: rgba(247,244,238,0.5); line-height: 1.75;
+    }
+
+    /* SIDS NOTE */
+    .sids-note {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(184,151,74,0.18);
+      border-left: 3px solid var(--gold);
+      padding: 2rem 2.5rem;
+      margin-top: 3rem;
+    }
+    .sids-note p {
+      font-family: var(--sans); font-size: 0.92rem; font-weight: 300;
+      color: rgba(247,244,238,0.6); line-height: 1.85;
+    }
+    .sids-note strong { color: rgba(247,244,238,0.85); font-weight: 400; }
+
+    /* ENTRY POINTS */
+    .entry-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .entry-card {
+      padding: 2rem; border: 1px solid var(--cream2);
+      background: var(--cream);
+      position: relative; transition: var(--trans);
+    }
+    .entry-card:hover { border-color: rgba(184,151,74,0.3); }
+    .entry-icon {
+      font-family: var(--cormo); font-size: 2rem;
+      color: rgba(184,151,74,0.25); margin-bottom: 0.8rem; line-height: 1;
+    }
+    .entry-card h4 {
+      font-family: var(--serif); font-size: 1.1rem; color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .entry-card p {
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+      color: var(--grey); line-height: 1.75;
+    }
+    .entry-link {
+      display: inline-block; margin-top: 1.2rem;
+      font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+      border-bottom: 1px solid rgba(184,151,74,0.3); padding-bottom: 2px;
+      transition: var(--trans);
+    }
+    .entry-link:hover { color: var(--navy); border-color: var(--navy); }
+
+    /* CTA BAND */
+    .cta-band {
+      background: var(--dark);
+      border-top: 1px solid rgba(184,151,74,0.15);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .cta-band h2 { color: var(--cream); margin-bottom: 1rem; }
+    .cta-band p {
+      font-family: var(--sans); font-size: 1rem; font-weight: 300;
+      color: rgba(247,244,238,0.55); max-width: 480px; margin: 0 auto 2rem;
+      line-height: 1.85;
+    }
+    .btn-primary {
+      display: inline-block;
+      font-family: var(--sans); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.9rem 2.5rem; background: var(--gold); color: var(--dark);
+      border: 1px solid var(--gold); transition: var(--trans);
+    }
+    .btn-primary:hover { background: var(--gold-l); border-color: var(--gold-l); }
+    .btn-outline-light {
+      display: inline-block;
+      font-family: var(--sans); font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.9rem 2.5rem; background: transparent; color: var(--cream);
+      border: 1px solid rgba(247,244,238,0.3); transition: var(--trans);
+      margin-left: 1rem;
+    }
+    .btn-outline-light:hover { border-color: rgba(247,244,238,0.7); }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: var(--cream); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; padding: 3rem 2rem 2rem; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 2rem; border-bottom: 1px solid rgba(184,151,74,0.1);
+    }
+    .footer-brand { display: flex; align-items: center; gap: 0.8rem; }
+    .footer-brand img { height: 44px; width: auto; }
+    .footer-brand-text {
+      font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(247,244,238,0.6); line-height: 1.5;
+    }
+    .footer-brand-text em {
+      display: block; font-style: italic; font-family: var(--serif);
+      font-size: 0.7rem; color: rgba(184,151,74,0.7); letter-spacing: 0.04em;
+    }
+    .footer-nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-nav a {
+      font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(247,244,238,0.45);
+      transition: var(--trans);
+    }
+    .footer-nav a:hover { color: var(--gold-l); }
+    .footer-bottom {
+      padding-top: 1.5rem; display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    .footer-bottom p {
+      font-family: var(--sans); font-size: 0.7rem;
+      color: rgba(247,244,238,0.3); letter-spacing: 0.04em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .pkg-grid-2, .pkg-grid-3 { grid-template-columns: 1fr; }
+      .bundle-card { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-step { border-right: none; border-bottom: 1px solid rgba(184,151,74,0.12); }
+      .process-step:nth-child(2n) { }
+      .process-step:last-child { border-bottom: none; }
+      .entry-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; gap: 2rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 64px; left: 0; right: 0;
+        background: rgba(14,26,43,0.98); padding: 1.5rem 2rem;
+        gap: 1.2rem; border-bottom: 1px solid rgba(184,151,74,0.15);
+      }
+      .nav-links.open a { font-size: 0.95rem; letter-spacing: 0.06em; }
+    }
+    @media (max-width: 600px) {
+      .process-steps { grid-template-columns: 1fr; }
+      .bundle-card { padding: 2rem; }
+    }
+  
+    /* Tab panel system */
+    .pkg-tab-panel { display: none; }
+    .pkg-tab-panel.active { display: block; }
+    .pkg-nav a.active { color: var(--gold-l); border-bottom-color: var(--gold); }
+
+    /* Page hero for packages */
+    .page-hero-wrap { display: none; }
+    .page-hero-wrap.active { display: block; }
+    </style>
 </head>
 <body>
 
@@ -584,6 +1004,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#ai-parliaments" class="nav-ai-link">AI for Parliaments</a></li>
+      <li><a href="#" onclick="showPackages(event)" id="nav-packages-link">Packages</a></li>
       <li><a href="#newsletter">Newsletter</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
@@ -593,6 +1014,7 @@
   </div>
 </nav>
 
+<div id="main-site-content">
 <!-- HERO -->
 <section id="home">
   <div class="hero-orb"></div>
@@ -715,55 +1137,94 @@
     <h2>Three service lines,<br/>one strategic intelligence operation</h2>
     <div class="services-grid">
 
+      <!-- SERVICE 01 -->
       <div class="service-card">
         <div class="service-num">01</div>
         <span class="service-tag">ABK Knowledge Services</span>
-        <h3>Capitalisation, Institutional Memory &amp; Knowledge Audits</h3>
-        <p>We help island institutions recover, structure and deploy their full knowledge base — from project portfolios and documentary foundations to citizens feedback, local practices, oral knowledge and field experience — including through AI-powered institutional memory tools.</p>
+        <h3>Knowledge Capitalisation &amp; Data Governance</h3>
+        <p>We help island institutions recover, structure and deploy their full knowledge base and data assets — from project portfolios and documentary foundations to citizens feedback, local practices, oral knowledge and field experience — including through AI-powered institutional memory tools.</p>
+
+        <div class="when-to-call">
+          <span class="when-to-call-label">When to call ABK</span>
+          <p>When your reports, archives and projects are accumulating without feeding your decisions.</p>
+        </div>
+
         <div class="service-divider"></div>
+
         <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:0.6rem;font-weight:600;">Main Offers</p>
         <ul class="service-items">
-          <li><strong>SIDS Project & Portfolio Capitalisation</strong> — collection (recovery), structuring, analysis and valorisation of the institution's formal and informal knowledge for decision-making purposes</li>
-          <li><strong>AI-Powered Institutional Memory</strong> — Knowledge Compass: makes institutional documentation searchable and living through RAG chatbot technology (AI-powered)</li>
-          <li><strong>Knowledge Management System Audits</strong> — diagnostic of institutional knowledge systems for island actors</li>
+          <li><strong>Knowledge Capitalisation &amp; Data Governance</strong> — collection (recovery), structuring, analysis and valorisation of the institution's formal and informal knowledge and data for decision-making purposes</li>
+          <span class="typical-item">Typical engagement: 4–8 weeks</span>
+          <li><strong>Institutional Knowledge Audit &amp; Framework</strong> — comprehensive audit of knowledge systems, policies, processes, protocols and data governance frameworks</li>
+          <span class="typical-item">Typical engagement: 4–6 weeks</span>
+          <li><strong>Flash Documentary &amp; Data Governance Audit</strong> — rapid mapping of all knowledge and data sources, how they are collected, processed, preserved and valued</li>
+          <span class="typical-item">Typical engagement: 10–15 working days</span>
         </ul>
+
         <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:0.6rem;margin-top:1rem;font-weight:600;">Products &amp; Add-ons</p>
         <ul class="service-items">
-          <li><strong>Documentary Collection Audits</strong> — gap analysis and collection strategy</li>
-          <li><strong>Knowledge Box</strong> — complete capitalisation kit (templates, preconfigured databases, video tutorials)</li>
+          <li><strong>AI-Powered Institutional Memory (Knowledge Compass)</strong> — RAG chatbot making institutional documentation searchable and living</li>
+          <li><strong>Knowledge Box</strong> — complete capitalisation kit (templates, preconfigured databases, tutorials)</li>
           <li><strong>Conference Intelligence Report</strong> — strategic synthesis, actor mapping, SIDS implications</li>
         </ul>
       </div>
 
+      <!-- SERVICE 02 -->
       <div class="service-card">
         <div class="service-num">02</div>
         <span class="service-tag">ABK Intelligence &amp; Publishing</span>
         <h3>Strategic Monitoring &amp; Analytical Publishing</h3>
-        <p>Customisable intelligence products — powered by AI — that track political, regulatory, financial, institutional but also social and public opinion trends shaping island worlds, paired with substantive analytical publishing.</p>
+        <p>Customisable intelligence products — powered by AI and human curation — that track political, regulatory, financial, institutional, social and public opinion trends shaping island worlds, paired with substantive analytical publishing.</p>
+
+        <div class="when-to-call">
+          <span class="when-to-call-label">When to call ABK</span>
+          <p>When you discover SIDS trends through the press when you should be anticipating them.</p>
+        </div>
+
         <div class="service-divider"></div>
+
         <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:0.6rem;font-weight:600;">Main Offers</p>
         <ul class="service-items">
-          <li><strong>Customisable strategic monitoring</strong> — AI-powered strategic monitoring with analytical summaries, tailored to your institution's priorities, using multiple official, unofficial, formal and informal sources</li>
+          <li><strong>Customised Monitor</strong> — AI-powered strategic monitoring with human curation and expert signature, tailored to your institution's priorities across official, unofficial, formal and informal sources</li>
+          <span class="typical-item">Typical engagement: ongoing subscription (monthly)</span>
+          <li><strong>SIDS Monitor — Strategic</strong> — full intelligence service with thematic depth, weekly alerts and annual synthesis. Uses ABK's 150+ SIDS sources database</li>
+          <span class="typical-item">Typical engagement: ongoing subscription (monthly + weekly)</span>
+          <li><strong>Thematic Bibliographic Mapping</strong> — structured state-of-knowledge map for a specific thematic area or project proposal</li>
+          <span class="typical-item">Typical engagement: 3–5 weeks</span>
         </ul>
+
         <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:0.6rem;margin-top:1rem;font-weight:600;">Strategic Briefs</p>
-        <div class="service-note">ABK can produce on-demand thematic briefs based on a broad island bibliography and multiple sources — formal, informal, official and unofficial. These products integrate field contacts, interviews, weak signals, and non-indexed sources — beyond what automated monitoring can reach.</div>
+        <div class="service-note">ABK produces on-demand thematic briefs integrating field contacts, interviews, weak signals and non-indexed sources — beyond what automated monitoring alone can reach.</div>
       </div>
 
+      <!-- SERVICE 03 -->
       <div class="service-card">
         <div class="service-num">03</div>
         <span class="service-tag">ABK Advisory</span>
-        <h3>Institutional Design &amp; AI-Assisted Knowledge Governance</h3>
-        <p>We translate intelligence into institutional solutions — from governance architecture for regional organisations to supporting island institutions in their AI transition.</p>
+        <h3>Institutional Design, Governance Architecture &amp; AI Integration</h3>
+        <p>We translate intelligence into institutional action — from governance architecture for island institutions and regional organisations to supporting parliaments and agencies in their digital and AI transition.</p>
+
+        <div class="when-to-call">
+          <span class="when-to-call-label">When to call ABK</span>
+          <p>When you need to translate knowledge into governance, institutional architecture or AI strategy.</p>
+        </div>
+
         <div class="service-divider"></div>
+
         <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:0.6rem;font-weight:600;">Main Offers</p>
         <ul class="service-items">
-          <li><strong>Institutional design</strong> — governance architectures for island institutions and regional organisations</li>
-          <li><strong>Island Digital Scan</strong> — digital readiness assessment evaluating an institution or parliament's preparedness for AI integration</li>
-          <li><strong>AI Transition Roadmap</strong> — strategic plan for AI integration adapted to island contexts</li>
+          <li><strong>Institutional Design &amp; Governance Architecture</strong> — restructuring, strategic planning, decentralisation, institutional transformation, inter-parliamentary cooperation frameworks</li>
+          <span class="typical-item">Typical engagement: 4–10 weeks depending on scope</span>
+          <li><strong>Digital Readiness Scan</strong> — assessment of an institution's preparedness for AI integration (digitisation, data governance, staff capacity, infrastructure)</li>
+          <span class="typical-item">Typical engagement: 2–3 weeks</span>
+          <li><strong>AI Transition Roadmap</strong> — phased strategic plan for AI integration adapted to island institutional contexts</li>
+          <span class="typical-item">Typical engagement: 3–4 weeks (often combined with Digital Scan)</span>
         </ul>
-        <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:0.6rem;margin-top:1rem;font-weight:600;">Add-on</p>
+
+        <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:0.6rem;margin-top:1rem;font-weight:600;">Add-ons</p>
         <ul class="service-items">
           <li><strong>Publications &amp; knowledge valorisation</strong> — support for publication and dissemination of local and institutional knowledge</li>
+          <li><strong>AI tools ecosystem integration</strong> — interface with technical partners for broader AI tool deployment</li>
         </ul>
       </div>
 
@@ -1049,24 +1510,608 @@
     </div>
   </div>
 </footer>
+</div>
+
+<div id="packages-content" style="display:none;">
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-orb"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-inner">
+    <span class="eyebrow eyebrow-light">Structured Engagements</span>
+    <span class="gold-line"></span>
+    <h1>Packages &amp; <em>Engagements</em></h1>
+    <p class="page-hero-desc">Concrete, time-bound deliverables for island institutions ready to act. Each package is scoped to produce tangible outputs — not just analysis — and is designed around the constraints of SIDS institutions: limited staff, donor-driven cycles, and the need for results that outlast the engagement.</p>
+    <p class="page-hero-note">"We do not sell hours. We commit to outcomes."</p>
+    <p style="margin-top:1.5rem;"><a href="#" onclick="showMainSite()" style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(247,244,238,0.35);border-bottom:1px solid rgba(247,244,238,0.15);padding-bottom:2px;">← Back to main site</a></p>
+  </div>
+</section>
+
+<!-- SECTION TAB NAV -->
+<div class="pkg-nav">
+  <div class="pkg-nav-inner">
+    <a href="#knowledge" class="active">Knowledge &amp; Data</a>
+    <a href="#intelligence">Strategic Intelligence</a>
+    <a href="#ai-parliaments">AI for Parliaments</a>
+    <a href="#institutional-design">Institutional Design</a>
+    <a href="#entry">Entry Points</a>
+    <a href="#process">How We Work</a>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 1 — KNOWLEDGE AUDIT
+     ============================================================ -->
+<section id="knowledge" class="section section-mid">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Knowledge Services</span>
+      <span class="gold-line"></span>
+      <h2>Knowledge Capitalisation and Data Governance</h2>
+      <p>Island institutions generate extraordinary knowledge and data. Field experience, programme learned lessons, archived expertise, citizens' voices — most of it disappears at the end of a cycle. ABK recovers it, structures it, and puts it to work for your next decisions.</p>
+    </div>
+
+    <div class="pkg-grid pkg-grid-2">
+
+      <!-- Flash Audit -->
+      <div class="pkg-card">
+        <span class="pkg-tag">Entry Level · Recommended First Step</span>
+        <h3>Flash Documentary &amp; Data Governance Audit</h3>
+        <p class="pkg-duration">10–15 working days</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">A scoped audit covering one thematic domain or programme portfolio. Everything can be formatted as data — quantitative or qualitative — making it exploitable for decision-making. This flash audit maps all data and knowledge sources used in the institution: how they are collected, processed, preserved, and valued (documents, reports, articles, but also indicators, citizen feedback, relevant public online data…). Designed to produce a concrete deliverable quickly — ideal as an entry point to a longer engagement or as a standalone portfolio piece for grant applications.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label">Deliverables</p>
+          <ul>
+            <li>Flash audit report (15–20 pages)</li>
+            <li>Gap and risk mapping (documentary)</li>
+            <li>Priority action recommendations</li>
+            <li>Reference to existing regional literature (SIDS corpus)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Full Audit -->
+      <div class="pkg-card">
+        <span class="pkg-tag">Full Engagement</span>
+        <h3>Institutional Knowledge Audit &amp; Framework</h3>
+        <p class="pkg-duration">4–6 weeks</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">A comprehensive audit of the institution's knowledge systems, policies, processes and protocols, including data governance frameworks — programmes, projects, field expertise, and documented practices. Produces a structured framework ready to inform strategy, donor reporting, and knowledge transfer.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label">Deliverables</p>
+          <ul>
+            <li>Full Knowledge Audit Report</li>
+            <li>Structured Knowledge Framework (thematic taxonomy)</li>
+            <li>Gap analysis with prioritised risks</li>
+            <li>12-month Priority Action Plan</li>
+            <li>AI-readiness assessment (optional add-on)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /pkg-grid -->
+
+    <div class="sids-note" style="background:var(--cream); border-left-color:var(--gold);">
+      <p><strong>Why it matters for SIDS institutions:</strong> Every programme completed, every regional conference attended, every field mission conducted produces knowledge. In small island states, this knowledge is non-replaceable — there is no equivalent institutional depth elsewhere. ABK's audits are designed specifically around the constraints and strengths of SIDS institutions: oral knowledge traditions, small-team environments, and the political continuity challenges of small governance systems.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — STRATEGIC INTELLIGENCE
+     ============================================================ -->
+<section id="intelligence" class="section section-alt">
+  <div class="container">
+    <div class="section-header section-header-light">
+      <span class="eyebrow eyebrow-light">Intelligence &amp; Publishing</span>
+      <span class="gold-line"></span>
+      <h2>Strategic Monitoring &amp; Intelligence Briefs</h2>
+      <p>The trends that matter for your institution — political, regulatory, financial, public opinion — exist before they become visible. ABK tracks them on your behalf, curated to your thematic priorities in the SIDS and Indian Ocean space.</p>
+    </div>
+
+    <div class="pkg-grid pkg-grid-3">
+
+      <!-- Monitor Customised -->
+      <div class="pkg-card pkg-card-dark">
+        <span class="pkg-tag pkg-tag-light">Customised Monitor</span>
+        <h3>Customised Monitor</h3>
+        <p class="pkg-duration">Monthly · Ongoing subscription</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">Curated intelligence brief covering your institution's priorities and policy landscape, customized according to your needs. ABK brings compilation of all your sources and enriches sources with its own research, and offers human curation and judgment powered by automated aggregation.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label pkg-items-label-light">Monthly Deliverables</p>
+          <ul>
+            <li>Intelligence Brief (8–12 pages)</li>
+            <li>3–5 curated priority items, analysed</li>
+            <li>Your institution-relevant international calendar</li>
+            <li>Bibliographic additions to client corpus</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Monitor Stratégique -->
+      <div class="pkg-card pkg-card-dark">
+        <span class="pkg-tag pkg-tag-light">Strategic</span>
+        <h3>SIDS Monitor — Strategic</h3>
+        <p class="pkg-duration">Monthly + weekly alerts · Ongoing</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">Full strategic intelligence service with thematic depth and advisory integration. Designed for institutions with active governance, fundraising, or legislative cycles requiring real-time positioning. Contains your institution's own priority topics plus global relevant SIDS topics. Uses ABK's 150+ diverse SIDS sources database.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label pkg-items-label-light">Monthly Deliverables</p>
+          <ul>
+            <li>Intelligence Brief (12–20 pages)</li>
+            <li>Weekly alert (2–3 priority items)</li>
+            <li>Thematic deep-dive (quarterly)</li>
+            <li>Annual synthesis report &amp; presentation</li>
+            <li>Positioning note on request (2/year)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bibliographic Mapping -->
+      <div class="pkg-card pkg-card-dark">
+        <span class="pkg-tag pkg-tag-light">One-Off Deliverable</span>
+        <h3>Thematic Bibliographic Mapping</h3>
+        <p class="pkg-duration">3–5 weeks</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">A structured state-of-knowledge map for a specific thematic area within the SIDS corpus. Useful for positioning papers, research or project proposals, or institutional strategy foundations.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label pkg-items-label-light">Deliverables</p>
+          <ul>
+            <li>Annotated bibliography (50–200 references)</li>
+            <li>Thematic gap analysis</li>
+            <li>Key actors and institutional mapping</li>
+            <li>Executive synthesis (5–8 pages)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /pkg-grid -->
+
+    <div class="sids-note">
+      <p><strong>ABK's advantage:</strong> Monitoring services exist everywhere. What ABK provides is human curation of automated centralisation — filtered through a specialised knowledge of SIDS governance. <strong>We read so you can decide.</strong></p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — AI FOR PARLIAMENTS
+     ============================================================ -->
+<section id="ai-parliaments" class="section section-mid">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Institutional Advisory</span>
+      <span class="gold-line"></span>
+      <h2>AI for Island Parliaments &amp; Legislatures</h2>
+      <p>A modular programme combining diagnostic, capacity building, and institutional knowledge structuring — designed specifically for the constraints of small island parliaments and legislative bodies in SIDS contexts.</p>
+    </div>
+
+    <div class="pkg-grid pkg-grid-3">
+
+      <!-- Pack 1 -->
+      <div class="pkg-card">
+        <span class="pkg-tag">Module 1</span>
+        <h3>Digital Readiness Scan &amp; Transition Roadmap</h3>
+        <p class="pkg-duration">15–18 working days</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">Two complementary dimensions in a single package. <strong>Digital Readiness Scan:</strong> a clear, realistic assessment of your institution's AI and digital readiness and maturity — document digitisation levels, data governance, staff capacity, infrastructure. <strong>Transition Roadmap:</strong> a concrete 2–3 year strategic plan for AI integration calibrated to your actual resources and governance constraints, not continental benchmarks.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label">Deliverables</p>
+          <ul>
+            <li>AI &amp; digital readiness and maturity assessment (IPU/UNESCO frameworks)</li>
+            <li>Risk and opportunity analysis — island context</li>
+            <li>Co-construction workshop (1 day, on-site or remote)</li>
+            <li>Detailed diagnostic report</li>
+            <li>2–3 year operational AI transition roadmap</li>
+            <li>Executive presentation for leadership</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pack 2 -->
+      <div class="pkg-card">
+        <span class="pkg-tag">Module 2</span>
+        <h3>AI Training for Parliamentarians &amp; Staff</h3>
+        <p class="pkg-duration">2–3 days</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">Practical, responsible AI capacity building for elected officials and parliamentary staff. Adapted to the specific governance and legislative context — not generic corporate AI literacy content.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label">Programme</p>
+          <ul>
+            <li>1 day for parliamentarians (decision-maker focus)</li>
+            <li>1–2 days for staff (operational AI tools)</li>
+            <li>SIDS-specific use cases throughout</li>
+            <li>Optional follow-up session (30 days later)</li>
+          </ul>
+        </div>
+        <div class="pkg-items" style="margin-top:0;">
+          <p class="pkg-items-label">Deliverables</p>
+          <ul>
+            <li>Training materials (reusable)</li>
+            <li>Use-case handbook (parliament-specific)</li>
+            <li>AI good practices guidelines</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pack 3 -->
+      <div class="pkg-card">
+        <span class="pkg-tag">Module 3</span>
+        <h3>AI-Powered Institutional Memory (RAG)</h3>
+        <p class="pkg-duration">6–12 weeks implementation + ongoing option</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">The most powerful institutional memory tool available. A RAG (Retrieval-Augmented Generation) chatbot trained on your parliament's own documentation — debates, reports, laws, committee proceedings, comparative studies. Staff and members query the institution's knowledge directly, in natural language. The documentation becomes interrogeable and alive. Designed and deployed by ABK with a technical partner, adapted to parliamentary contexts.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label">Deliverables</p>
+          <ul>
+            <li>Documentary audit and architecture design</li>
+            <li>RAG system configuration and deployment (with technical partner)</li>
+            <li>Staff training and onboarding</li>
+            <li>12-month maintenance and update plan</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /pkg-grid -->
+
+    <!-- Add-on card: AI tool integration partner -->
+    <div class="pkg-card" style="margin-top:1.5rem; border-left:3px solid rgba(184,151,74,0.5);">
+      <span class="pkg-tag">AI Ecosystem Integration</span>
+      <h3>Interface with Technical Partners for Broader AI Integration</h3>
+      <p class="pkg-duration">Scoped per project</p>
+      <div class="pkg-divider"></div>
+      <p class="pkg-desc">ABK can serve as the institutional and strategic interface with technical partners for the implementation and integration of a wider range of AI tools into a coherent parliamentary system. Examples include: automatic transcription and synthesis of debates, multi-language translation tools, legislative monitoring and comparative tools, automated impact analysis of draft legislation, legislative assistance, citizen-facing chatbots, and more. ABK brings the institutional knowledge and governance framework; technical partners bring the implementation expertise.</p>
+    </div>
+
+
+
+    <!-- Bundle -->
+    <div class="bundle-card">
+      <div class="bundle-left">
+        <span class="pkg-tag pkg-tag-light">Recommended Programme</span>
+        <h3>AI for Island Parliaments — Full Programme</h3>
+        <p>Modules 1 + 2 + 3 combined into a coherent 6–12 month programme. A complete transformation pathway from diagnostic to operational capacity — with ongoing intelligence to sustain the momentum. A sequenced, integrated programme allows each phase to build on the previous one: the diagnostic informs the training, the training accelerates the architecture, the architecture makes the monitoring actionable.</p>
+
+      </div>
+      <div class="bundle-right">
+        <p class="bundle-includes-label">Full Programme Includes</p>
+        <ul class="bundle-includes">
+          <li>AI maturity diagnostic and 2–3 year roadmap</li>
+          <li>Tailored training for parliamentarians and staff</li>
+          <li>Documentary audit and AI-ready architecture</li>
+          <li>Interface with technical partner for tool development and integration</li>
+          <li>12 months strategic intelligence monitoring (SIDS + AI)</li>
+          <li>Quarterly synthesis reports</li>
+          <li>Advisory access (positioning notes on request)</li>
+          <li>Progress review sessions (bi-annual)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ============================================================
+     SECTION 3b — INSTITUTIONAL DESIGN
+     ============================================================ -->
+<section id="institutional-design" class="section section-mid">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Institutional Advisory</span>
+      <span class="gold-line"></span>
+      <h2>Institutional Design &amp; Governance Architecture</h2>
+      <p>A stand-alone advisory support — independent of AI — for SIDS institutions navigating restructuring, transformation, or governance challenges. Can also complement the Knowledge and Intelligence service lines.</p>
+    </div>
+
+    <div class="pkg-grid pkg-grid-2">
+
+      <div class="pkg-card">
+        <span class="pkg-tag">Core Offer</span>
+        <h3>Institutional Design Support</h3>
+        <p class="pkg-duration">4–10 weeks depending on scope</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">Institutional design support: accompanying a restructuring process, strategic planning, decentralisation, institutional transformation, or governance architecture design for SIDS institutions. A stand-alone advisory support that could also complement the Knowledge and Intelligence services.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label">Typical Engagements</p>
+          <ul>
+            <li>Governance architecture for new or restructured institutions</li>
+            <li>Strategic planning facilitation</li>
+            <li>Decentralisation advisory</li>
+            <li>Institutional transformation roadmap</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pkg-card">
+        <span class="pkg-tag">How It Connects</span>
+        <h3>Advisory as a Continuum</h3>
+        <p class="pkg-duration">Modular · can be combined with other service lines</p>
+        <div class="pkg-divider"></div>
+        <p class="pkg-desc">Institutional design does not exist in isolation. The most durable governance architectures are those grounded in the institution's own knowledge base and informed by an accurate reading of the environment. ABK's three service lines — Knowledge, Intelligence, and Advisory — are designed to work together or independently, depending on where your institution is in its journey.</p>
+        <div class="pkg-items">
+          <p class="pkg-items-label">Natural Combinations</p>
+          <ul>
+            <li>Institutional Design + Knowledge Capitalisation Audit → governance grounded in existing assets</li>
+            <li>Institutional Design + Strategic Monitor → transformation informed by live environment</li>
+            <li>Institutional Design + AI Transition Roadmap → future-ready architecture from the start</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /pkg-grid -->
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — ENTRY POINTS
+     ============================================================ -->
+<section id="entry" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Getting Started</span>
+      <span class="gold-line"></span>
+      <h2>Where to Begin</h2>
+      <p>Not sure which package fits your situation? ABK engagements start with one of three entry points — chosen based on your institution's immediate priority, not a sales process.</p>
+    </div>
+
+    <div class="entry-grid">
+
+      <div class="entry-card">
+        <div class="entry-icon">◈</div>
+        <h4>You have dispersed knowledge and need to structure it</h4>
+        <p>Start with the Flash Documentary &amp; Data Governance Audit. A scoped, fast deliverable that maps your knowledge and data sources — what exists, what is missing, and what to prioritise — without committing to a long engagement.</p>
+        <a href="#" onclick="showMainSite()" class="entry-link">Flash Documentary &amp; Data Audit →</a>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-icon">◈</div>
+        <h4>You need to stay current on what matters for your mandate</h4>
+        <p>Start with the Customised Monitor. A trial brief reveals whether our curation adds value for your team — and you can adjust the scope or stop at any quarterly renewal.</p>
+        <a href="#" onclick="showMainSite()" class="entry-link">Customised Monitor →</a>
+      </div>
+
+      <div class="entry-card">
+        <div class="entry-icon">◈</div>
+        <h4>AI is on your agenda and you do not know where to start</h4>
+        <p>Start with the AI Diagnostic (Module 1 standalone). A concrete, honest assessment of what AI can and cannot do for your institution — no vendor agenda, no overpromising.</p>
+        <a href="#" onclick="showMainSite()" class="entry-link">AI Diagnostic →</a>
+      </div>
+
+    </div>
+
+
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — HOW WE WORK
+     ============================================================ -->
+<section id="process" class="section section-alt">
+  <div class="container">
+    <div class="section-header section-header-light">
+      <span class="eyebrow eyebrow-light">Our Method</span>
+      <span class="gold-line"></span>
+      <h2>How ABK Works</h2>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <h4>Diagnostic call</h4>
+        <p>We begin by understanding your institutional context, your existing knowledge assets, your priorities and the decision you are trying to support. We ask about your current catalogues and archives and data ecosystem as well as your knowledge management mechanisms before building anything new.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <h4>Scoped proposal</h4>
+        <p>We propose a deliverable-based engagement with a fixed scope, timeline, and price. No hourly billing. The deliverable is defined upfront and serves as the contract anchor.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <h4>Structured production</h4>
+        <p>ABK combines knowledge-management and documentary analysis skills with AI-assisted synthesis — but every output is reviewed, validated, and signed by our founder. Judgment and institutional access are non-delegable.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <h4>Delivery and upsell logic</h4>
+        <p>We deliver what was scoped, on time. Upsell to a deeper engagement is proposed only where the first deliverable has demonstrated clear value — never as part of the initial pitch.</p>
+      </div>
+    </div>
+
+    <div class="sids-note">
+      <p><strong>On procurement:</strong> ABK structures its intelligence products as editorial subscriptions, which can often be processed under existing publication or documentation budget lines, making them easier to procure for many institutions. For project-based engagements, we are open to working through intermediary organisations already contracted or pre-qualified with international organisations and regional bodies.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="container">
+    <span class="eyebrow eyebrow-light">Ready to act?</span>
+    <span class="gold-line" style="margin:1rem auto;"></span>
+    <h2>Start with a conversation</h2>
+    <p>Tell us your institution's context and immediate priority. We will propose the most appropriate entry point — with no obligation to proceed further.</p>
+    <a href="#" onclick="showMainSite()" class="btn-primary">Get in touch</a>
+    <a href="#" onclick="showMainSite()" class="btn-outline-light">View services overview</a>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-text">
+          Archipelago Books &amp; Knowledge
+          <em>Strategic Intelligence for Island Governance</em>
+        </div>
+      </div>
+      <nav class="footer-nav">
+        <a href="#" onclick="showMainSite()">Home</a>
+        <a href="#" onclick="showMainSite()">Services</a>
+        <a href="packages.html">Packages</a>
+        <a href="#" onclick="showMainSite()">About</a>
+        <a href="#" onclick="showMainSite()">Publications</a>
+        <a href="#" onclick="showMainSite()">Newsletter</a>
+        <a href="#" onclick="showMainSite()">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Archipelago Books &amp; Knowledge · archipelago-knowledge.org</p>
+      <p>Strategic intelligence for island governance</p>
+    </div>
+  </div>
+
+</div>
+
+
 
 <script>
+  // ════════════════════════════════════════════════════════
+  // PACKAGES TAB SECTION IDS
+  // ════════════════════════════════════════════════════════
+  var PKG_SECTIONS = ['knowledge','intelligence','ai-parliaments','institutional-design','entry','process'];
+
+  // ── Menu toggle ──────────────────────────────────────────
   function toggleMenu() {
     document.getElementById('nav-links').classList.toggle('open');
   }
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('nav-links').classList.remove('open'));
-  });
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.nav-links a').forEach(a => a.style.color = '');
-        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-        if (active) active.style.color = 'var(--gold-l)';
+
+  // ── Show packages panel ──────────────────────────────────
+  function showPackages(e) {
+    if (e) e.preventDefault();
+    document.getElementById('main-site-content').style.display = 'none';
+    document.getElementById('packages-content').style.display = 'block';
+    document.getElementById('nav-packages-link').style.color = 'var(--gold-l)';
+    window.scrollTo(0, 0);
+    showTab('knowledge');
+  }
+
+  // ── Show main site ───────────────────────────────────────
+  function showMainSite() {
+    document.getElementById('main-site-content').style.display = 'block';
+    document.getElementById('packages-content').style.display = 'none';
+    document.getElementById('nav-packages-link').style.color = '';
+    window.scrollTo(0, 0);
+  }
+
+  // ── Show a single tab section, hide all others ───────────
+  function showTab(tabId) {
+    PKG_SECTIONS.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    var target = document.getElementById(tabId);
+    if (target) {
+      target.style.display = 'block';
+      // Scroll to just below sticky nav bars
+      setTimeout(function() {
+        var pkgNav = document.querySelector('.pkg-nav');
+        var offset = (pkgNav ? pkgNav.offsetHeight : 48) + 64;
+        var rect = target.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - offset, behavior: 'smooth' });
+      }, 10);
+    }
+    // Update active tab styling
+    document.querySelectorAll('.pkg-nav a').forEach(function(a) {
+      if (a.getAttribute('href') === '#' + tabId) {
+        a.classList.add('active');
+      } else {
+        a.classList.remove('active');
       }
     });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+  }
+
+  // ════════════════════════════════════════════════════════
+  // DOM READY
+  // ════════════════════════════════════════════════════════
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // Close mobile menu on nav link click
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        document.getElementById('nav-links').classList.remove('open');
+      });
+    });
+
+    // Main nav links go back to main site if packages panel is open
+    document.querySelectorAll('#nav-links a[href^="#"]').forEach(function(a) {
+      if (a.id !== 'nav-packages-link') {
+        a.addEventListener('click', function() {
+          if (document.getElementById('packages-content').style.display !== 'none') {
+            showMainSite();
+          }
+        });
+      }
+    });
+
+    // Init: hide all pkg sections (tab system controls visibility)
+    PKG_SECTIONS.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+
+    // Wire pkg-nav tab links
+    document.querySelectorAll('.pkg-nav a').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var tabId = this.getAttribute('href').replace('#', '');
+        showTab(tabId);
+      });
+    });
+
+    // Wire entry-card action links inside packages to their target tabs
+    var entryTabMap = {
+      'Flash Documentary': 'knowledge',
+      'Flash Audit': 'knowledge',
+      'Customised Monitor': 'intelligence',
+      'AI Diagnostic': 'ai-parliaments'
+    };
+    document.querySelectorAll('#packages-content .entry-link').forEach(function(a) {
+      var text = a.textContent.trim();
+      for (var key in entryTabMap) {
+        if (text.indexOf(key) !== -1) {
+          (function(tid) {
+            a.addEventListener('click', function(e) {
+              e.preventDefault();
+              showTab(tid);
+            });
+          })(entryTabMap[key]);
+          break;
+        }
+      }
+    });
+
+    // Main site scroll active nav highlight
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.nav-links a').forEach(function(a) { a.style.color = ''; });
+          var active = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+          if (active) active.style.color = 'var(--gold-l)';
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('#main-site-content section[id]').forEach(function(s) {
+      observer.observe(s);
+    });
+
+  }); // end DOMContentLoaded
 </script>
 </body>
 </html>
