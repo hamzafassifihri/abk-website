@@ -113,14 +113,16 @@
       display: block; font-size: 0.55rem; color: var(--gold-l);
       letter-spacing: 0.06em; font-style: italic; font-family: var(--serif);
     }
-    .nav-links { display: flex; gap: 1.3rem; align-items: center; }
+    .nav-links { display: flex; gap: 1rem; align-items: center; flex-wrap: nowrap; }
     .nav-links a {
-      font-family: var(--sans); font-size: 0.7rem; font-weight: 400;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: var(--sans); font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
       color: rgba(247,244,238,0.65); transition: var(--trans);
+      white-space: nowrap;
     }
     .nav-links a:hover { color: var(--gold-l); }
     .nav-ai-link { color: var(--gold) !important; font-weight: 600 !important; }
+    .nav-packages-btn { color: var(--gold-l) !important; }
     .nav-ai-link:hover { color: var(--gold-l) !important; }
     .nav-cta {
       padding: 0.45rem 1.1rem !important;
@@ -595,6 +597,7 @@
     .nav-sub li a:hover { color: var(--gold-l); background: rgba(184,151,74,0.05); }
     .nav-arrow { font-size: 0.55rem; opacity: 0.6; margin-left: 3px; }
 
+    /* Layout breakpoint — 900px */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
       .hero-logo-wrap { order: -1; }
@@ -612,8 +615,10 @@
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .footer-top { flex-direction: column; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
 
-      /* Mobile nav — full screen overlay */
+    /* Nav hamburger breakpoint — 700px */
+    @media (max-width: 700px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .nav-links.open {
@@ -624,18 +629,18 @@
       }
       .nav-links.open > li { border-bottom: 1px solid rgba(184,151,74,0.08); }
       .nav-links.open > li > a {
-        font-size: 0.9rem; letter-spacing: 0.06em;
-        display: block; padding: 0.85rem 0;
+        font-size: 1rem; letter-spacing: 0.06em;
+        display: block; padding: 1rem 0;
       }
-      /* Mobile sub-menus — always visible when parent open */
+      /* Sub-menus always visible in open mobile menu */
       .nav-has-sub .nav-sub {
         display: block; position: static;
         background: transparent; border: none;
-        padding: 0 0 0.5rem 1rem;
+        padding: 0 0 0.6rem 1.2rem;
       }
       .nav-sub li a {
-        font-size: 0.75rem; padding: 0.4rem 0;
-        color: rgba(247,244,238,0.45); letter-spacing: 0.08em;
+        font-size: 0.8rem; padding: 0.45rem 0;
+        color: rgba(247,244,238,0.45); letter-spacing: 0.07em;
       }
       .nav-sub li a:hover { background: transparent; color: var(--gold-l); }
       .nav-arrow { display: none; }
@@ -1028,19 +1033,11 @@
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#home">Home</a></li>
-      <li class="nav-has-sub">
-        <a href="#services" class="nav-parent-link">Services <span class="nav-arrow">▾</span></a>
-        <ul class="nav-sub">
-          <li><a href="#services" data-scroll="services">Knowledge Services</a></li>
-          <li><a href="#services" data-scroll="services">Intelligence &amp; Publishing</a></li>
-          <li><a href="#services" data-scroll="services">Advisory</a></li>
-        </ul>
-      </li>
+      <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#publications">Publications</a></li>
       <li><a href="#ai-parliaments" class="nav-ai-link">AI for Parliaments</a></li>
       <li class="nav-has-sub">
-        <a href="#" onclick="showPackages(event)" id="nav-packages-link" class="nav-parent-link">Packages <span class="nav-arrow">▾</span></a>
+        <a href="#" onclick="showPackages(event)" id="nav-packages-link" class="nav-packages-btn">Packages <span class="nav-arrow">▾</span></a>
         <ul class="nav-sub" id="nav-packages-sub">
           <li><a href="#" onclick="showPackageTab(event,'knowledge')">Knowledge &amp; Data</a></li>
           <li><a href="#" onclick="showPackageTab(event,'intelligence')">Strategic Intelligence</a></li>
@@ -1050,7 +1047,6 @@
           <li><a href="#" onclick="showPackageTab(event,'process')">How We Work</a></li>
         </ul>
       </li>
-      <li><a href="#newsletter">Newsletter</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
