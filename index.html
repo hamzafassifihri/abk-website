@@ -260,7 +260,7 @@
       .process-step:last-child { border-bottom: none; }
 
       /* Entry grid: 1 column */
-      .entry-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .entry-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
       .entry-card { padding: 1.2rem; overflow: visible; }
 
       /* Section headers: tighter */
@@ -1069,6 +1069,9 @@
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
       margin-top: 2.5rem;
     }
+    @media (max-width: 900px) {
+      .entry-grid { grid-template-columns: 1fr !important; gap: 1rem; }
+    }
     #entry { overflow: visible !important; }
     .entry-card { min-height: 0; overflow: visible; }
     .entry-card {
@@ -1438,7 +1441,7 @@
     <div class="ai-intro">
       <p>Parliaments and regional assemblies generate extraordinary volumes of knowledge — debates, reports, laws and legal texts, committee proceedings, comparative studies, archival records. Most of it remains siloed, under-used, or effectively inaccessible to those who need it most.</p>
       <p>ABK's AI for Parliaments offer combines deep expertise in island parliamentary governance with cutting-edge AI tools to make institutional knowledge searchable, usable and living — rather than archived and forgotten.</p>
-      <p>Island parliaments that take an early lead on the AI agenda can exert disproportionate influence on international norms — and position themselves at the forefront of governance in the AI era. ABK supports that ambition.</p>
+      <p>Island parliaments that take an early lead on the AI agenda can exert disproportionate influence on international norms, improve their public service and mandate delivery, and position themselves at the forefront of governance in the AI era. ABK supports that ambition.</p>
     </div>
     <div class="ai-offers-grid">
       <div class="ai-offer" style="grid-column: 1 / -1; background: var(--navy2); border: 1px solid rgba(184,151,74,0.25);">
